@@ -1,0 +1,89 @@
+--1 . a result set is a query result including desire output and header.
+--2.  difference btween union and union all is union contain only unique data from two
+-- table or data set, while union all out put everything cinlduing reapting data
+--3.  intersect and except
+--4.  a join is to combine data into result set that matching column are combined 
+--	,join using foreign key in one table to look up primary key on the others and combine both
+--	while union simply combine two table to form a larger table. no key is being look up only column being matched
+--5. inner join return the element that soly matches both table and full join 
+--	return all element from both table 
+--6. a left join return the result including all rows from left table and when a row from left table does 
+--	not match row from the right table, a null value is return
+--	an outer join returns only the result that does not matches both table
+--7. cross join returns the cartesian product of rows from table are joined
+--8. where is used to fiter the record beforeh group take place and having is to used to filter value afte group
+--9. a group by caluse con contain two or more columns\
+
+
+
+
+--select count(1) from production.product p
+
+--select count(p.ProductID),p.ProductSubcategoryID from production.product p
+--where p.ProductSubcategoryID is not null
+--group by p.ProductSubcategoryID
+
+--select p.ProductSubcategoryID,count(1) as CountedProducts from production.product p
+--where p.ProductSubcategoryID is not null
+--group by p.ProductSubcategoryID
+
+--select count(1) as Counted_no_product_Subcategory from production.product p
+--where p.ProductSubcategoryID is null
+
+--select p.ProductID,sum(p.Quantity) as Total_Quantity from production.ProductInventory P
+--group by p.ProductID
+
+--select p.ProductID, sum(p.Quantity) as The_sum from production.ProductInventory P
+--where p.LocationID =40
+--group by p.ProductID
+--having sum(p.Quantity) < 100
+
+--select p.Shelf,p.ProductID, sum(p.Quantity) as The_sum from production.ProductInventory P
+--where p.LocationID =40
+--group by p.ProductID, p.Shelf
+--having sum(p.Quantity)<100
+
+
+--select p.ProductID,  avg(p.Quantity) as The_Avg from production.ProductInventory P
+--where p.LocationID =10
+--group by p.ProductID
+
+
+--select p.ProductID, p.Shelf, avg(p.Quantity) as The_Avg from production.ProductInventory P
+--where p.LocationID =10
+--group by p.Shelf, p.ProductID
+
+--select p.ProductID, p.Shelf, avg(p.Quantity) as The_Avg from production.ProductInventory P
+--where p.Shelf!= 'N/A'
+--group by p.Shelf, p.ProductID
+
+
+--select p.color, p.class ,avg(p.ListPrice) as Avg_Price, sum(1) as The_Count from production.Product P
+--where p.color is not null and p.class is not null
+--group by p.Class,p.Color
+
+
+--select pc.CountryRegionCode as Country,  ps.StateProvinceCode as Province from Person.CountryRegion pc
+--inner join person.StateProvince ps
+--on pc.CountryRegionCode=ps.CountryRegionCode
+
+
+--select pc.CountryRegionCode as Country,  ps.StateProvinceCode as Province from Person.CountryRegion pc
+
+--inner join person.StateProvince ps
+--on pc.CountryRegionCode=ps.CountryRegionCode
+--where pc.CountryRegionCode in ('CA','DE')
+
+
+select * from products
+select p.ProductID,p.ProductName, p.ReorderLevel from products p
+where p.ReorderLevel >= 25
+
+select top 5 p.UnitsOnOrder, p.ProductID,p.ProductName	from products p
+order by p.UnitsOnOrder desc
+
+select top 5 p.UnitsOnOrder, p.ProductID,p.ProductName,p.ReorderLevel	from products p
+where p.ReorderLevel>=20
+order by p.UnitsOnOrder desc
+
+
