@@ -87,3 +87,16 @@ where p.ReorderLevel>=20
 order by p.UnitsOnOrder desc
 
 
+-------14
+
+
+select p.ProductID,p.ProductName, p.ReorderLevel from products p
+where p.ReorderLevel >= 25
+
+select top 5 p.UnitsOnOrder, p.ProductID,p.ProductName	from products p
+order by p.UnitsOnOrder desc
+
+select top 5 p.UnitsOnOrder, p.ProductID,p.ProductName,p.ReorderLevel	from products p
+where p.ReorderLevel>=20
+order by p.UnitsOnOrder desc
+
