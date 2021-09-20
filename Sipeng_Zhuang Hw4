@@ -1,1 +1,16 @@
+--1 a view is a virtual table based on set of an SQL statement, view result set can used to hide credential data from user
+--2. a view can be modify by the database owner but not for the user.
+--3. stored procedure is SQL statement that stored query functionn that prevent user from modify the data, and make data more secure.
+--4. a view is a virtual table that programer join mutiple tables in view to present result and output, while stored procedure use parameter to do function 
+     for example, updating or inserting data.
+--5. a function can only read and output data from a table, must carry at least one single value result, while stored procedure can change 
+    data from a database and also call a function within SQL code, but function cannot call stored procedure.
+--6. stored procedure can return multiple result set when invoking multiple select statement.
+--7. we can't executed stored procedure as part of SELECT statement, because stored procedureh is a set of statement and function, 
+    select  statement can only return value from a table.
+--8. a trigger is a stored procedure in database which automatically invokes whenever a special event in the database occure. 
+    for example, DML(data manipulation language), DDL (data definition language) or logon 
+--9. a trigger can be used when programing desire to invokes a statement when certain event is happened, for example, a trigger can 
+      automatically calculate the average gpa when user key in their test result. 
+--10. trigger is a special type of stored procedureh can automatically invoke when special evernt happen in the database.
 
