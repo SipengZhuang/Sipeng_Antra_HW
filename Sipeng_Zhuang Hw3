@@ -1,0 +1,10 @@
+--1. I will choose to use join instead of subquery, because it could mkae my code clean and neat, however, subquery has it's own advantage like calculate the sum of set value.
+    in terms of run time and memory occupancy, join is better than subqueery, because join has less logic read and scan.
+--2. CTE can be use to organized complex code into simple code block, create recursive query, improve readability and managebility
+--3. variable table is special type of temp table to help store thee data, while maintaining all the properties from the local variable  the variable table is stored at tempdb 
+--4. delete statement is used to delete one or multiple row in a table,deleting rows from the table will retain the row identity and does not reset it to the seed value.
+    truncate used to remove all rows by deallocating the page and leaving no log, or retain the identity. In terms of performance, truncate has faster executiont time becauseh
+     truncate erase all row identity.
+     
+--5. delete will retain the identity column and truncate remove them all.
+--6 . delete table erase the table completely, while truncate remove all data from the table, but it won't remove the columns, indexes, constraint and schema.
