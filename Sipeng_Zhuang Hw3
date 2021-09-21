@@ -8,3 +8,81 @@
      
 --5. delete will retain the identity column and truncate remove them all.
 --6 . delete table erase the table completely, while truncate remove all data from the table, but it won't remove the columns, indexes, constraint and schema.
+
+
+
+
+
+
+select * from customers c
+inner join Employees e 
+on c.city=e.city
+
+select * from customers c
+	where c.city not in (select city from employees)
+
+select * from Customers c
+	left  join Employees e
+	on c.city=e.city
+	where c.city is not null and e.city is null
+
+
+
+select od.ProductID, p.ProductName, sum(od.Quantity) as Total_quantity from [Order Details] od
+inner join products p
+on od.ProductID =p.ProductID
+group by od.ProductID, p.ProductName
+
+
+select o.ShipCity, sum(od.Quantity) as Total_Order from orders o
+inner join [Order Details] od
+on o.OrderID=od.OrderID
+group by o.ShipCity
+
+
+
+select c.city from Customers c
+group by c.city
+having count(c.CustomerID)>=2
+
+
+select dt.City from (select c.City,Count(c.CustomerID) total from Customers c
+group by c.city) dt
+where total >= 2
+
+select c.city, count(o.orderid) as Total_Order from Customers c
+left join orders o
+on c.CustomerID=o.CustomerId
+group by c.city
+having  count(o.orderid)>=2
+
+select c.CompanyName from Customers c
+full join orders o
+on c.CustomerID=o.CustomerID
+where o.ShipCity<>c.city
+group by c.CompanyName
+
+select top 5 dt.ProductID ,avg_price from (
+select od.ProductID, sum(od.quantity) As total,
+avg ((od.unitprice-od.discount)*od.Quantity)  as avg_price    from [Order Details] od
+group by od.ProductID)dt
+order by total desc
+
+select e.city from Employees e
+	full join orders o
+	on e.city=o.ShipCity
+	where orderid is null
+
+with most_order
+as 
+(
+	select e.lastname, e.firstname, count(o.OrderID) as Total_Order from employees e 
+	inner join orders o
+	on e.EmployeeID=o.EmployeeID
+	group by e.LastName,e.FirstName
+)
+select top 1* from most_order
+order by Total_Order desc
+
+-- to remove the duplicates record of a table we can use instinct when applying the select statement
+
